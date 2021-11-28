@@ -3,7 +3,6 @@ package com.centropyebicolor.reefmeasures.bean;
 import lombok.Data;
 
 @Data
-public class AirTemperature extends Measure{
+public class Ph extends Measure {
 
-    String unit = "°C";
 }
