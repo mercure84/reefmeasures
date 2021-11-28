@@ -12,4 +12,6 @@ import javax.persistence.Entity;
 @DiscriminatorValue("WaterTemperature")
 public class WaterTemperature extends Measure {
 
+    String unit = "°C";
+
 }
