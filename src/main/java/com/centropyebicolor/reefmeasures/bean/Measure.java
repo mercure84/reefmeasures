@@ -14,7 +14,7 @@ public abstract class Measure {
     @GeneratedValue
     int id;
 
-    Date date;
+    Date date = new Date();
     float value;
     String unit;
 

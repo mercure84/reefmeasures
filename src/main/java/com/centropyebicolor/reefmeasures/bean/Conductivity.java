@@ -6,6 +6,5 @@ import javax.persistence.Entity;
 
 @Data
 @Entity
-public class Redox extends Measure{
-    String unit = "mV";
+public class Conductivity extends Measure{
 }
