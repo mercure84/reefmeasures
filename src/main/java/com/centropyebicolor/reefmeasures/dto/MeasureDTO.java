@@ -8,8 +8,5 @@ import java.util.List;
 
 @Repository
 public interface MeasureDTO extends JpaRepository<Measure, Integer> {
-
     List<Measure> getMeasuresByValueNotNullOrderByDateAsc();
-
-
 }

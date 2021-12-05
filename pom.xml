@@ -90,7 +90,17 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-            <springProfile>homol</springProfile>
+                <springProfile>homol</springProfile>
+            </properties>
+
+        </profile>
+        <profile>
+            <id>prod</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <springProfile>prod</springProfile>
             </properties>
 
         </profile>
