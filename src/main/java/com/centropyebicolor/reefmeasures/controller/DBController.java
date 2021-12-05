@@ -2,13 +2,16 @@ package com.centropyebicolor.reefmeasures.controller;
 
 import com.centropyebicolor.reefmeasures.bean.*;
 import com.centropyebicolor.reefmeasures.dto.MeasureDTO;
+import com.centropyebicolor.reefmeasures.helpers.KindOfMeasure;
 import com.centropyebicolor.reefmeasures.helpers.MeasureForm;
+import com.centropyebicolor.reefmeasures.helpers.MyWonderfulUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class DBController {
@@ -17,8 +20,11 @@ public class DBController {
     @Autowired
     MeasureDTO measureDTO;
 
+    @Autowired
+    MyWonderfulUtils myWonderfulUtils;
+
     @GetMapping(path = "/addWaterTemperature/{measure}")
-    public WaterTemperature addWaterTemperature(@PathVariable String measure){
+    public WaterTemperature addWaterTemperature(@PathVariable String measure) {
 
         WaterTemperature data = new WaterTemperature();
         data.setDate(new Date());
@@ -67,9 +73,23 @@ public class DBController {
         for (MeasureForm measureForm : measureFormList) {
             measures.add(addSingleMeasure(measureForm));
         }
-        System.out.println("[DB Controller] "+ measures.size() + " has been saved in database.");
+        System.out.println("[DB Controller] " + measures.size() + " has been saved in database.");
         return measures;
     }
 
+    @GetMapping(path = "/getAllMeasures")
+    public List<Measure> getAllMeasures() {
+        System.out.println("[DB Controller] send all Measures");
+        return measureDTO.getMeasuresByValueNotNullOrderByDateAsc();
+    }
 
+    @GetMapping(path = "/getMeasuresByType/{measureType}")
+    public List<Measure> getMeasuresByType(@PathVariable String measureType) {
+        KindOfMeasure kind = KindOfMeasure.valueOf(measureType);
+        List<Measure> allMeasures = getAllMeasures();
+        List<Measure> filteredMeasures = allMeasures.stream().filter(
+                measure -> myWonderfulUtils.getClassOfMeasure(measure) == kind).collect(Collectors.toList());
+        System.out.println("[DB Controller] send all Measures of kind " + kind);
+        return filteredMeasures;
+    }
 }

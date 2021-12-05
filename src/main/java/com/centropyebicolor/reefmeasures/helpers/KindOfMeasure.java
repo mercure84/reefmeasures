@@ -6,6 +6,7 @@ public enum KindOfMeasure {
     AIRTEMPERATURE,
     AIRHUMIDITY,
     PH,
-    REDOX
+    REDOX,
+    CONDUCTIVITY
 
 }

@@ -7,4 +7,5 @@ import javax.persistence.Entity;
 @Data
 @Entity
 public class Conductivity extends Measure{
+    String unit = "mS/cm";
 }
