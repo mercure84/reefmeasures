@@ -9,6 +9,6 @@ public class MeasureForm {
 
     KindOfMeasure kind ;
     float value;
-    Date date;
+    Date date = new Date();
 
 }

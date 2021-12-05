@@ -6,7 +6,9 @@ import com.centropyebicolor.reefmeasures.helpers.MeasureForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 public class DBController {
@@ -49,14 +51,25 @@ public class DBController {
             default:
                 throw new IllegalStateException("Unexpected value: " + measureForm.getKind());
         }
-
-        if(measureForm.getDate() != null){
+        if (measureForm.getDate() != null) {
             measure.setDate(measureForm.getDate());
 
         }
         measure.setValue(measureForm.getValue());
         measureDTO.save(measure);
+        System.out.println("[DB Controller] :" + measure + " measures has been saved in database");
         return measure;
     }
+
+    @PostMapping(path = "/addMultipleMeasures")
+    public List<Measure> addMultipleMeasures(@RequestBody List<MeasureForm> measureFormList) {
+        List<Measure> measures = new ArrayList<>();
+        for (MeasureForm measureForm : measureFormList) {
+            measures.add(addSingleMeasure(measureForm));
+        }
+        System.out.println("[DB Controller] "+ measures.size() + " has been saved in database.");
+        return measures;
+    }
+
 
 }
