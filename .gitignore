@@ -31,4 +31,5 @@ build/
 
 /src/main/resources/application-homol.properties
 /src/main/resources/application-prod.properties
+/src/main/resources/application-prod-no-ssl.properties
 
