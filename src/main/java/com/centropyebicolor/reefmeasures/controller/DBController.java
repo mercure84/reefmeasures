@@ -73,7 +73,7 @@ public class DBController {
         for (MeasureForm measureForm : measureFormList) {
             measures.add(addSingleMeasure(measureForm));
         }
-        System.out.println("[DB Controller] " + measures.size() + " has been saved in database.");
+        System.out.println("[DB Controller] " + measures.size() + " measures has been saved in database.");
         return measures;
     }
 
