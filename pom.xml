@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.centropye-bicolor</groupId>
     <artifactId>reefmeasures</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.1-REALEASE</version>
     <name>reefmeasures</name>
     <description>reefmeasures</description>
     <properties>
@@ -101,6 +101,16 @@
             </activation>
             <properties>
                 <springProfile>prod</springProfile>
+            </properties>
+
+        </profile>
+        <profile>
+            <id>prod-no-ssl</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <springProfile>prod-no-ssl</springProfile>
             </properties>
 
         </profile>
